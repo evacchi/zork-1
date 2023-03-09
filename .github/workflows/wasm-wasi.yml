@@ -1,0 +1,34 @@
+name: Wasm WASI CI
+
+on:
+  push:
+    branches: [ "wasm-wasi" ]
+  pull_request:
+    branches: [ "wasm-wasi" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: wasi-sdk and make
+      run: |
+        curl -LO https://github.com/WebAssembly/wasi-sdk/releases/download/wasi-sdk-19/wasi-sdk-19.0-linux.tar.gz
+        tar xzvf wasi-sdk-19.0-linux.tar.gz
+    
+    - name: make
+      run: |
+        export WASI_SDK_PATH=$PWD/wasi-sdk-19.0
+        export CC="${WASI_SDK_PATH}/bin/clang --target=wasm32-wasi"
+        make
+        mv zork zork.wasm
+        tar cvf zork-wasm-wasi.tgz zork.wasm dtextc.dat
+        
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v3.1.2
+      with:
+        path: zork-wasm-wasi.tgz
+      
+
