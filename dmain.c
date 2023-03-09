@@ -10,7 +10,7 @@
 #include "funcs.h"
 #include "vars.h"
 
-void main(argc, argv)
+int main(argc, argv)
 int argc;
 char **argv;
 {
@@ -22,5 +22,6 @@ char **argv;
     }
 /* 						!IF INIT, PLAY GAME. */
     exit_();
+    return 0;
 /* 						!DONE */
 } /* MAIN__ */

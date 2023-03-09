@@ -5,13 +5,14 @@
 /* WRITTEN BY R. M. SUPNIK */
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <ctype.h>
 #include "funcs.h"
 #include "vars.h"
 
 /* This declaration is here since many systems don't have <stdlib.h> */
 
-extern int system P((const char *));
+/* extern int system P((const char *)); */
 
 static logical lex_ P((char *, integer *, integer *, logical));
 
@@ -39,7 +40,7 @@ L90:
     more_input();
 
     if (buffer[0] == '!') {
-	system(buffer + 1);
+	// system(buffer + 1);
 	goto L5;
     }
 

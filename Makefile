@@ -4,7 +4,7 @@
 BINDIR = /usr/games
 
 # Where to install the data file
-DATADIR = /usr/games/lib
+DATADIR = .
 
 # Where to install the man page
 MANDIR = /usr/share/man
@@ -18,8 +18,8 @@ MANDIR = /usr/share/man
 # more option 1: use the termcap routines.  On some systems the LIBS
 # variable may need to be set to -lcurses.  On some it may need to
 # be /usr/lib/termcap.o.  These options are commented out below.
-LIBS = -ltermcap
-TERMFLAG =
+# LIBS = -ltermcap
+# TERMFLAG =
 # LIBS = -lcurses
 # LIBS = /usr/lib/termcap.o
 
@@ -34,8 +34,8 @@ TERMFLAG =
 # TERMFLAG = -DMORE_24
 
 # more option 4: don't use the more facility at all
-# LIBS =
-# TERMFLAG = -DMORE_NONE
+LIBS =
+TERMFLAG = -DMORE_NONE
 
 # End of more options
 
@@ -45,7 +45,7 @@ TERMFLAG =
 GDTFLAG = -DALLOW_GDT
 
 # Compilation flags
-CFLAGS = -g #-static
+CFLAGS = -g -std=c89 #-static
 # On SCO Unix Development System 3.2.2a, the const type qualifier does
 # not work correctly when using cc.  The following line will cause it
 # to not be used and should be uncommented.
