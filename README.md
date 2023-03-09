@@ -1,4 +1,14 @@
+Fork of [historicalsource/zork-1](https://github.com/historicalsource/zork-1) slightly tuned to be built with WASI SDK.  
+Run it with [tetratelabs/wazero](https://github.com/tetratelabs/wazero) or your favorite Wasm runtime.
+
+e.g.:
+
 ```
+  cd /tmp
+  curl -L https://github.com/evacchi/zork-1/releases/download/v0.0.1/zork-wasm-wasi.tgz | tar xzf -
+  wazero run -mount=.:/ zork.wasm
+```
+
 Welcome to Dungeon.			This version created 11-MAR-91.
 You are in an open field west of a big white house with a boarded
 front door.
