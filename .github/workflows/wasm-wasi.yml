@@ -2,13 +2,12 @@ name: Wasm WASI CI
 
 on:
   push:
-    branches: [ "wasm-wasi" ]
-  pull_request:
-    branches: [ "wasm-wasi" ]
+    tags:
+      - "v*"
 
 jobs:
-  build:
-
+  tagged-release:
+    name: "Tagged Release"
     runs-on: ubuntu-latest
 
     steps:
@@ -25,10 +24,10 @@ jobs:
         make
         mv zork zork.wasm
         tar cvf zork-wasm-wasi.tgz zork.wasm dtextc.dat
-        
-    - name: Upload a Build Artifact
-      uses: actions/upload-artifact@v3.1.2
+              
+    - uses: "marvinpinto/action-automatic-releases@latest"
       with:
-        path: zork-wasm-wasi.tgz
-      
-
+        repo_token: "${{ secrets.GITHUB_TOKEN }}"
+        prerelease: false
+        files: |
+          *.tgz
